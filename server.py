@@ -36,6 +36,7 @@ from typing import Any
 
 import requests
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
@@ -58,6 +59,7 @@ if not GEMINI_API_KEY:
 mcp = FastMCP(
     name="gemini-image-staging",
     stateless_http=True,  # simpler for a single-tool utility server
+    transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
 )
 
 
